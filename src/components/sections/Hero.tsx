@@ -70,12 +70,12 @@ export function Hero() {
               {/* Action Buttons */}
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Button
-                  href="#projects"
+                  href="#experience"
                   variant="primary"
                   size="lg"
                   className="gap-2 shadow-[0_0_25px_rgba(99,102,241,0.35)]"
                 >
-                  View Projects
+                  Explore Experience
                   <ArrowRight size={16} aria-hidden="true" />
                 </Button>
                 <Button

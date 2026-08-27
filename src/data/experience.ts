@@ -1,106 +1,79 @@
 import type { Experience } from "@/types";
 
 /**
- * Work experience and training entries.
- * Source of truth: RESUME.md — "Experience" and "Training & Internship" sections.
+ * Professional Experience data for Tagline Infotech.
+ * Source of truth: RESUME.md
  *
- * NOTES:
- *   - Training entries have no confirmed dates — startDate/endDate are empty strings.
- *   - Training company roles/titles are not stated in the resume — role set to "Developer".
- *   - liveUrl / repoUrl omitted for all projects (not in resume).
- *   - Additional training entry has no company name — company is "Additional Training".
+ * NOTE: Ravi Nakrani has worked solely at Tagline Infotech.
+ * All selected works (Coin Toss Game, Urban Genba, LocumFind, Gajari)
+ * and technical contributions reflect work and training engineered during this tenure.
+ * Live / repo URLs are omitted as these are authenticated internal enterprise platforms.
  */
-export const experience: Experience[] = [
-  // ── Work experience ──────────────────────────────────────────
-  {
-    company: "Tagline Infotech",
-    role: "Full-Stack Developer",
-    type: "work",
-    startDate: "Oct 2022",
-    endDate: "Present",
-    location: "Surat, Gujarat",
-    projects: [
-      {
-        name: "Coin Toss Game",
-        description:
-          "High-concurrency B2B gaming platform supporting real-time gameplay, wallet integration, and leaderboard management for thousands of concurrent users.",
-        technologies: [
-          "Socket.io",
-          "NestJS",
-          "PostgreSQL",
-          "Next.js",
-          "TypeScript",
-          "Prisma",
-          "Redis",
-          "AWS SQS",
-        ],
-        highlights: [
-          "Architected and developed a high-concurrency B2B gaming platform from scratch using NestJS, TypeScript, and Prisma (PostgreSQL), supporting 1,000+ concurrent users.",
-          "Engineered a robust B2B Wallet Integration system, handling complex transactional logic via secure webhooks with third-party Operators.",
-          "Implemented asynchronous game-round processing using AWS SQS and worker-based architecture, allowing settled rounds to trigger new rounds without blocking the main application flow.",
-          "Developed a secure RNG-based game engine with configurable probability parameters and server-side outcome validation.",
-          "Implemented Redis caching for high-frequency game and leaderboard data, reducing repeated PostgreSQL queries and improving response performance.",
-          "Leveraged Socket.io for low-latency broadcasting of game states, bets, leaderboard rankings, and results to thousands of connected clients simultaneously.",
-        ],
-      },
-      {
-        name: "Urban Genba",
-        description:
-          "Enterprise frontend across three interconnected applications, delivering complex UI features in a highly iterative, stakeholder-driven environment.",
-        technologies: ["React.js", "Ant Design", "Highcharts"],
-        highlights: [
-          "Developed frontend features across three enterprise applications using React.js and Ant Design, translating continuously evolving business requirements into practical user interfaces.",
-          "Worked in a highly iterative environment where requirements evolved as stakeholders gathered new on-field knowledge, frequently adapting existing workflows and interfaces to reflect changing business processes.",
-          "Built complex dynamic forms, data-heavy tables, and reusable UI components for enterprise workflows, focusing on maintainability and consistent user experience across applications.",
-        ],
-      },
-    ],
-  },
-
-  // ── Training & Internship ────────────────────────────────────
-  {
-    company: "LocumFind",
-    role: "Frontend Developer",
-    type: "internship",
-    startDate: "",
-    endDate: "",
-    location: "",
-    projects: [],
-    highlights: [
-      "Developed responsive and reusable React features for a platform connecting locum pharmacists with pharmacy businesses.",
-      "Implemented advanced multi-filter search, real-time chat using WebSockets, and a dynamic event calendar.",
-      "Integrated Google Address Autocomplete and built complex dynamic forms with validation and reusable components.",
-      "Developed frontend state-management and component architecture to support interactive, data-driven workflows.",
-    ],
-  },
-  {
-    company: "Gajari",
-    role: "Full-Stack Developer",
-    type: "internship",
-    startDate: "",
-    endDate: "",
-    location: "",
-    projects: [],
-    highlights: [
-      "Developed static and interactive frontend prototypes ahead of backend availability to support frequent product demonstrations and stakeholder feedback.",
-      "Implemented hierarchical role-based access control (RBAC) to manage multi-user permissions across application modules.",
-      "Developed workflows for maintenance scheduling, repair ticketing, refrigerant recovery, cylinder tracking, certificate generation, vehicle scrapping, and material reuse tracking.",
-      "Built Highcharts-based data visualizations and optimized frontend performance for high-volume form interactions.",
-    ],
-  },
-  {
-    company: "Additional Training",
-    role: "Trainee Developer",
-    type: "training",
-    startDate: "",
-    endDate: "",
-    location: "",
-    projects: [],
-    highlights: [
-      "Completed practical software development training focused on JavaScript and Node.js, including modular application development, debugging, version control, and collaborative code reviews.",
-      "Gained hands-on experience with Git/GitHub, pair programming, and code review workflows through practical development exercises.",
-      "Implemented a coin-based reward system and coupon generation logic to support user engagement and promotional workflows.",
-      "Developed scheduled tasks using Cron jobs and implemented database queries and MongoDB schema changes for application features.",
-    ],
-  },
-];
+export const experience: Experience = {
+  company: "Tagline Infotech",
+  role: "Full-Stack Developer",
+  startDate: "Oct 2022",
+  endDate: "Present",
+  location: "Surat, Gujarat",
+  summary:
+    "Architecting and engineering high-concurrency platforms, real-time distributed systems, and enterprise SaaS applications using TypeScript, Node.js, NestJS, React, and Next.js.",
+  selectedWork: [
+    {
+      id: "coin-toss-game",
+      title: "Coin Toss Game",
+      description:
+        "High-concurrency B2B gaming platform supporting 1,000+ concurrent users with real-time broadcasting, wallet webhooks, and asynchronous round processing.",
+      technologies: [
+        "NestJS",
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma",
+        "Redis",
+        "AWS SQS",
+        "Socket.io",
+      ],
+      category: "B2B Gaming Engine",
+    },
+    {
+      id: "urban-genba",
+      title: "Urban Genba",
+      description:
+        "Enterprise applications and data-heavy workflows featuring dynamic forms, data tables, and reusable UI components across multiple apps.",
+      technologies: ["React", "Ant Design", "Highcharts", "TypeScript"],
+      category: "Enterprise SaaS Frontend",
+    },
+    {
+      id: "locumfind",
+      title: "LocumFind",
+      description:
+        "Platform with advanced multi-filter search, real-time WebSocket chat, and dynamic calendar workflows connecting locum pharmacists with pharmacies.",
+      technologies: [
+        "React",
+        "WebSockets",
+        "JavaScript",
+        "Google Autocomplete",
+      ],
+      category: "Healthcare Marketplace",
+    },
+    {
+      id: "gajari",
+      title: "Gajari",
+      description:
+        "Workflow-focused application with hierarchical role-based access control, operational workflows, and interactive Highcharts data visualizations.",
+      technologies: ["React", "Express", "MongoDB", "WebSocket", "Highcharts"],
+      category: "Operations & RBAC",
+    },
+  ],
+  contributions: [
+    "Architected and developed a high-concurrency B2B platform supporting 1,000+ concurrent users using NestJS, TypeScript, and Prisma (PostgreSQL).",
+    "Implemented low-latency real-time state broadcasting and live updates using Socket.io and WebSockets.",
+    "Implemented asynchronous processing using AWS SQS and worker-based architecture for non-blocking round settlement.",
+    "Built transactional wallet integration handling complex accounting logic via secure webhooks.",
+    "Implemented Redis caching for high-frequency data and leaderboard lookups, significantly reducing database load.",
+    "Developed server-side validated RNG-based game logic with configurable probability parameters.",
+    "Built complex React interfaces, dynamic forms, and data-heavy tables with interactive Highcharts visualizations.",
+    "Developed reusable UI components and hierarchical role-based access control (RBAC) for enterprise operational workflows.",
+    "Implemented scheduled cron jobs, database queries, and schema optimizations across MongoDB and PostgreSQL.",
+  ],
+};

@@ -74,57 +74,43 @@ export function Header() {
         {/* ── Desktop nav ── */}
         <nav aria-label="Main navigation" className="hidden md:block">
           <ul className="flex items-center gap-1 lg:gap-2" role="list">
-            {navItems
-              .filter((item) => item.href !== "#case-study") // Reference shows About, Experience, Projects, Skills, Education, Contact
-              .map((item) => {
-                const sectionId = item.href.replace("#", "");
-                const isActive = activeSection === sectionId;
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      aria-current={isActive ? "location" : undefined}
-                      className={cn(
-                        "relative flex h-8 items-center rounded-md px-3 text-xs lg:text-sm font-medium transition-colors",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
-                        isActive ? "text-text" : "text-text-2 hover:text-text"
-                      )}
-                    >
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-indicator"
-                          className="absolute inset-0 rounded-md bg-surface border border-border"
-                          transition={{
-                            type: "spring",
-                            bounce: 0.15,
-                            duration: 0.4,
-                          }}
-                          aria-hidden="true"
-                        />
-                      )}
-                      <span className="relative z-10">{item.label}</span>
-                    </a>
-                  </li>
-                );
-              })}
+            {navItems.map((item) => {
+              const sectionId = item.href.replace("#", "");
+              const isActive = activeSection === sectionId;
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    aria-current={isActive ? "location" : undefined}
+                    className={cn(
+                      "relative flex h-8 items-center rounded-md px-3 text-xs lg:text-sm font-medium transition-colors",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                      isActive ? "text-text" : "text-text-2 hover:text-text"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-indicator"
+                        className="absolute inset-0 rounded-md bg-surface border border-border"
+                        transition={{
+                          type: "spring",
+                          bounce: 0.15,
+                          duration: 0.4,
+                        }}
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
         {/* ── Right controls ── */}
         <div className="flex items-center gap-2.5">
           <ThemeToggle />
-
-          {/* Download / View Resume button */}
-          <a
-            href="#contact"
-            className={cn(
-              "hidden sm:inline-flex items-center justify-center h-8 px-3.5 rounded-lg text-xs font-medium",
-              "border border-border bg-surface text-text hover:border-accent/50 hover:bg-surface-2 transition-all",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-sm"
-            )}
-          >
-            Download Resume
-          </a>
 
           {/* Mobile menu button */}
           <button

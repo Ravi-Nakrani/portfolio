@@ -35,30 +35,6 @@ export interface EngineeringHighlight {
   iconName: "users" | "zap" | "cpu" | "database";
 }
 
-// --------------- Featured Case Study ---------------
-
-export interface CaseStudyPillar {
-  title: string;
-  description: string;
-  points: string[];
-  technologies: string[];
-}
-
-export interface CaseStudy {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  duration: string;
-  location: string;
-  tagline: string;
-  overview: string;
-  technologies: string[];
-  metrics: { label: string; value: string }[];
-  pillars: CaseStudyPillar[];
-  engineeringTakeaways: string[];
-}
-
 // --------------- Skills ---------------
 
 export interface SkillGroup {
@@ -67,29 +43,25 @@ export interface SkillGroup {
   skills: string[];
 }
 
-// --------------- Experience ---------------
+// --------------- Experience & Selected Work ---------------
 
-export interface Project {
-  name: string;
+export interface SelectedWorkItem {
+  id: string;
+  title: string;
   description: string;
   technologies: string[];
-  highlights: string[];
-  liveUrl?: string;
-  repoUrl?: string;
   category?: string;
 }
-
-export type ExperienceType = "work" | "internship" | "training";
 
 export interface Experience {
   company: string;
   role: string;
-  type: ExperienceType;
   startDate: string;
   endDate: string;
   location: string;
-  projects: Project[];
-  highlights?: string[];
+  summary: string;
+  selectedWork: SelectedWorkItem[];
+  contributions: string[];
 }
 
 // --------------- Education ---------------

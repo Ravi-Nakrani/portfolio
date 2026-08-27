@@ -2,8 +2,6 @@ import { Hero } from "@/components/sections/Hero";
 import { Highlights } from "@/components/sections/Highlights";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
-import { CoinTossCaseStudy } from "@/components/sections/CoinTossCaseStudy";
-import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { Education } from "@/components/sections/Education";
 import { Strengths } from "@/components/sections/Strengths";
@@ -21,9 +19,7 @@ export default function HomePage() {
       <Hero />
       <Highlights />
       <About />
-      <CoinTossCaseStudy />
       <Experience />
-      <Projects />
       <Skills />
       <Education />
       <Strengths />
