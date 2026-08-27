@@ -58,7 +58,7 @@ export function HeroPhoto() {
         <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-border/60 bg-surface-2">
           <Image
             src="/my_photo.png"
-            alt={personal.name}
+            alt={`${personal.name} — Full-Stack Software Engineer`}
             fill
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 420px, 440px"
             priority

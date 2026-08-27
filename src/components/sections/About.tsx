@@ -11,6 +11,8 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
 import { personal } from "@/data";
 
+const HEADING_ID = "about-heading";
+
 /**
  * About Section — Editorial Redesign
  * Two-column desktop composition:
@@ -20,7 +22,7 @@ import { personal } from "@/data";
  */
 export function About() {
   return (
-    <SectionWrapper id="about">
+    <SectionWrapper id="about" labelledBy={HEADING_ID}>
       <AnimatedSection>
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
           {/* ── Left Column: Professional Narrative (7 cols) ── */}
@@ -29,7 +31,10 @@ export function About() {
               About Me
             </span>
 
-            <h2 className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl">
+            <h2
+              id={HEADING_ID}
+              className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl"
+            >
               Building systems that scale.
             </h2>
 

@@ -5,8 +5,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useScrolled } from "@/hooks/useScrolled";
 import { useActiveSection } from "@/hooks/useActiveSection";
-import { navItems } from "@/data";
-import { personal } from "@/data";
+import { navItems, personal } from "@/data";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 
@@ -157,8 +156,6 @@ export function Header() {
         {menuOpen && (
           <motion.div
             id="mobile-menu"
-            role="dialog"
-            aria-label="Mobile navigation"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}

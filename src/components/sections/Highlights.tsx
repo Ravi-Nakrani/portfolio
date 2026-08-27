@@ -1,33 +1,16 @@
-import { Users, Radio, Cpu, Database } from "lucide-react";
+import { Users, Zap, Cpu, Database } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { EngineeringHighlight } from "@/types";
 import { Container } from "@/components/layout/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { engineeringHighlights } from "@/data";
 
-const impactItems = [
-  {
-    icon: Users,
-    value: "1,000+",
-    title: "Concurrent Users",
-    description: "High-concurrency B2B gaming platform",
-  },
-  {
-    icon: Radio,
-    value: "Real-Time",
-    title: "Socket.io Systems",
-    description: "Live game states, leaderboard & results broadcast",
-  },
-  {
-    icon: Cpu,
-    value: "AWS SQS",
-    title: "Async Processing",
-    description: "Worker-based decoupled round settlement",
-  },
-  {
-    icon: Database,
-    value: "Redis",
-    title: "High-Frequency Caching",
-    description: "Sub-millisecond leaderboard & state lookups",
-  },
-];
+const iconMap: Record<EngineeringHighlight["iconName"], LucideIcon> = {
+  users: Users,
+  zap: Zap,
+  cpu: Cpu,
+  database: Database,
+};
 
 /**
  * Engineering Impact Section
@@ -53,18 +36,14 @@ export function Highlights() {
             </div>
 
             {/* 4-column metric grid with clean dividers */}
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-border/60">
-              {impactItems.map((item, index) => {
-                const Icon = item.icon;
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 lg:divide-x lg:divide-border/60">
+              {engineeringHighlights.map((item, index) => {
+                const Icon = iconMap[item.iconName];
                 return (
                   <div
-                    key={item.title}
+                    key={item.id}
                     className={`flex flex-col justify-between ${
-                      index === 0
-                        ? "lg:pr-8"
-                        : index === 3
-                          ? "lg:pl-8"
-                          : "lg:px-8"
+                      index % 2 === 0 ? "lg:px-8" : "lg:pr-8"
                     }`}
                   >
                     <div>
@@ -75,7 +54,7 @@ export function Highlights() {
                       </div>
 
                       <p className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
-                        {item.value}
+                        {item.metric}
                       </p>
                       <h3 className="mt-2 text-sm font-semibold uppercase tracking-wider text-text">
                         {item.title}

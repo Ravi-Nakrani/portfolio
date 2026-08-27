@@ -4,18 +4,13 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { personal } from "@/data";
+import { SITE_URL } from "@/lib/config";
 
-// ── Font ────────────────────────────────────────────────────────
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
-
-// ── Metadata ────────────────────────────────────────────────────
-// NOTE: Replace with the real deployment URL before going live.
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ravinakrani.vercel.app"; // PLACEHOLDER — update before deploy
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,7 +44,7 @@ export const metadata: Metadata = {
       "Full-Stack Software Engineer with 4 years of experience building scalable web applications and real-time systems.",
     images: [
       {
-        url: "/og-image.png", // PLACEHOLDER — create in Phase 4
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: `${personal.name} — Full-Stack Software Engineer`,
@@ -61,7 +56,7 @@ export const metadata: Metadata = {
     title: `${personal.name} — Full-Stack Software Engineer`,
     description:
       "Full-Stack Software Engineer with 4 years of experience building scalable web applications and real-time systems.",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -74,6 +69,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+  },
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
@@ -105,7 +105,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");if(t==="light"){document.documentElement.classList.add("light");}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.add("light");}else{document.documentElement.classList.remove("light");}}catch(e){}})();`,
           }}
         />
         <script

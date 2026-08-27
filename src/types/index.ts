@@ -81,7 +81,7 @@ export interface Strength {
   iconSymbol: string;
 }
 
-export type SoftSkill = Strength;
+
 
 // --------------- Navigation ---------------
 

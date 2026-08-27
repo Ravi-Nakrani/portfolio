@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { personal } from "@/data";
 
 interface FormState {
   name: string;
@@ -101,10 +102,10 @@ export function ContactForm() {
           <p className="mt-1.5 max-w-sm text-xs sm:text-sm text-text-2">
             Thank you for reaching out. In V1, you can also email me directly at{" "}
             <a
-              href="mailto:ravinakrani10@gmail.com"
+              href={`mailto:${personal.email}`}
               className="text-accent underline hover:text-accent-2 font-medium"
             >
-              ravinakrani10@gmail.com
+              {personal.email}
             </a>
             .
           </p>

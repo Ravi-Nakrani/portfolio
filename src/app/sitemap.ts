@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ravinakrani.vercel.app";
+import { SITE_URL } from "@/lib/config";
 
 /**
  * Generates sitemap.xml dynamically at build time.
