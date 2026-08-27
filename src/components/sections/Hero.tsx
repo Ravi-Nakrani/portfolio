@@ -1,16 +1,16 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/Button";
-import { HeroArchitectureVisual } from "@/components/sections/HeroArchitectureVisual";
+import { HeroPhoto } from "@/components/sections/HeroPhoto";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { personal } from "@/data";
 
 /**
- * Hero Section — Redesigned
+ * Hero Section
  * Two-column desktop layout:
  * Left: Typographic micro-label, massive name heading, concise positioning statement,
  * clean technology line, CTA buttons, social links.
- * Right: Technical Architecture Ecosystem visualization.
+ * Right: Professional portrait photo presentation with glassmorphism and ambient glow.
  */
 export function Hero() {
   const hasLinkedIn = Boolean(personal.social.linkedin);
@@ -125,9 +125,9 @@ export function Hero() {
               </div>
             </div>
 
-            {/* ── Right Column: Technical Ecosystem Architecture (5 cols) ── */}
-            <div className="w-full lg:col-span-5">
-              <HeroArchitectureVisual />
+            {/* ── Right Column: Portrait Photo & Floating Status (5 cols) ── */}
+            <div className="w-full lg:col-span-5 flex justify-center lg:justify-end">
+              <HeroPhoto />
             </div>
           </div>
         </AnimatedSection>
