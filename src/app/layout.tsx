@@ -18,44 +18,56 @@ export const metadata: Metadata = {
     default: `${personal.name} — Full-Stack Software Engineer`,
     template: `%s | ${personal.name}`,
   },
-  description:
-    "Full-Stack Software Engineer with 4 years of experience building scalable web applications and real-time systems using TypeScript, Node.js, NestJS, React, and Next.js.",
+  description: `${personal.name} is a Full-Stack Software Engineer based in ${personal.location} with ${personal.yearsOfExperience}+ years of experience building scalable web applications and real-time distributed systems using TypeScript, Node.js, NestJS, React, and Next.js.`,
+  applicationName: `${personal.name} — Portfolio`,
+  authors: [{ name: personal.name, url: SITE_URL }],
+  creator: personal.name,
+  publisher: personal.name,
   keywords: [
+    "Ravi Nakrani",
     "Full-Stack Software Engineer",
+    "Software Engineer Surat",
     "TypeScript",
     "Node.js",
     "NestJS",
     "React",
     "Next.js",
     "PostgreSQL",
-    "WebSockets",
     "Redis",
+    "Socket.io",
     "AWS SQS",
+    "WebSockets",
+    "Scalable Web Applications",
+    "Real-Time Systems",
   ],
-  authors: [{ name: personal.name, url: SITE_URL }],
-  creator: personal.name,
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    type: "website",
+    type: "profile",
+    firstName: "Ravi",
+    lastName: "Nakrani",
+    username: "ravinakrani",
+    gender: "male",
     locale: "en_IN",
     url: SITE_URL,
     siteName: `${personal.name} — Portfolio`,
     title: `${personal.name} — Full-Stack Software Engineer`,
-    description:
-      "Full-Stack Software Engineer with 4 years of experience building scalable web applications and real-time systems.",
+    description: `${personal.name} is a Full-Stack Software Engineer based in ${personal.location} with ${personal.yearsOfExperience}+ years of experience building scalable web applications and real-time distributed systems.`,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${personal.name} — Full-Stack Software Engineer`,
+        alt: `${personal.name} — Full-Stack Software Engineer Portfolio`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${personal.name} — Full-Stack Software Engineer`,
-    description:
-      "Full-Stack Software Engineer with 4 years of experience building scalable web applications and real-time systems.",
+    description: `${personal.name} is a Full-Stack Software Engineer based in ${personal.location} with ${personal.yearsOfExperience}+ years of experience building scalable web applications and real-time distributed systems.`,
     images: ["/opengraph-image"],
   },
   robots: {
@@ -64,34 +76,112 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
       "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: SITE_URL,
-  },
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
+    ],
     shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/apple-icon.png",
   },
 };
 
-// ── JSON-LD structured data ──────────────────────────────────────
+// ── JSON-LD structured data graph ────────────────────────────────
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: personal.name,
-  jobTitle: "Full-Stack Software Engineer",
-  email: personal.email,
-  url: SITE_URL,
-  sameAs: [personal.social.linkedin, personal.social.github].filter(Boolean),
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Surat",
-    addressRegion: "Gujarat",
-    addressCountry: "IN",
-  },
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: personal.name,
+      givenName: "Ravi",
+      familyName: "Nakrani",
+      jobTitle: "Full-Stack Software Engineer",
+      description: personal.summary,
+      url: SITE_URL,
+      image: `${SITE_URL}/my_photo.png`,
+      email: `mailto:${personal.email}`,
+      telephone: personal.phone,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Surat",
+        addressRegion: "Gujarat",
+        addressCountry: "IN",
+      },
+      sameAs: [personal.social.linkedin, personal.social.github].filter(
+        Boolean
+      ),
+      worksFor: {
+        "@type": "Organization",
+        name: "Tagline Infotech",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Surat",
+          addressRegion: "Gujarat",
+          addressCountry: "IN",
+        },
+      },
+      alumniOf: [
+        {
+          "@type": "EducationalOrganization",
+          name: "Maharaja Krishnakumarsinhji Bhavnagar University",
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Jawahar Navodaya Vidyalaya",
+        },
+      ],
+      knowsAbout: [
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "NestJS",
+        "Express.js",
+        "React",
+        "Next.js",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "Socket.io",
+        "WebSockets",
+        "AWS SQS",
+        "REST APIs",
+        "Distributed Systems",
+        "Scalable Web Applications",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: `${personal.name} — Full-Stack Software Engineer`,
+      description: `Personal portfolio and engineering showcase of ${personal.name}, Full-Stack Software Engineer based in ${personal.location}.`,
+      publisher: {
+        "@id": `${SITE_URL}/#person`,
+      },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profilepage`,
+      url: SITE_URL,
+      name: `${personal.name} — Full-Stack Software Engineer Portfolio`,
+      isPartOf: {
+        "@id": `${SITE_URL}/#website`,
+      },
+      about: {
+        "@id": `${SITE_URL}/#person`,
+      },
+      mainEntity: {
+        "@id": `${SITE_URL}/#person`,
+      },
+    },
+  ],
 };
 
 // ── Root Layout ──────────────────────────────────────────────────

@@ -81,8 +81,6 @@ export interface Strength {
   iconSymbol: string;
 }
 
-
-
 // --------------- Navigation ---------------
 
 export interface NavItem {

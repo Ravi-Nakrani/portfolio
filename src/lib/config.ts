@@ -1,4 +1,4 @@
-﻿/**
+/**
  * src/lib/config.ts
  * Centralised site-level configuration constants.
  *
@@ -6,4 +6,5 @@
  * Update the fallback to match your production domain before deploying.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ravinakrani.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://portfolio-ravi-nakrani.vercel.app";

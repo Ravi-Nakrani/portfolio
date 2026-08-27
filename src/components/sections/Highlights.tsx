@@ -22,7 +22,7 @@ export function Highlights() {
   return (
     <section
       id="highlights"
-      aria-label="Engineering Impact"
+      aria-labelledby="highlights-heading"
       className="py-8 sm:py-14"
     >
       <Container>
@@ -30,9 +30,12 @@ export function Highlights() {
           <div className="relative overflow-hidden rounded-2xl border border-border bg-surface/80 p-6 sm:p-10 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.15)]">
             {/* Eyebrow Label */}
             <div className="mb-8 flex items-center justify-between">
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2">
+              <h2
+                id="highlights-heading"
+                className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2"
+              >
                 Engineering Impact
-              </span>
+              </h2>
             </div>
 
             {/* 4-column metric grid with clean dividers */}
