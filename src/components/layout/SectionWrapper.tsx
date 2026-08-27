@@ -26,7 +26,7 @@ export function SectionWrapper({
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={cn("py-16 sm:py-24", className)}
+      className={cn("py-10 sm:py-15 lg:py-20", className)}
     >
       <Container>{children}</Container>
     </section>

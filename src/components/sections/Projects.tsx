@@ -14,8 +14,8 @@ export function Projects() {
   return (
     <SectionWrapper id="projects" labelledBy={HEADING_ID}>
       <AnimatedSection>
-        <div className="mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent-2 mb-2 block">
+        <div className="mb-14">
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 mb-3 block">
             Selected Works
           </span>
           <h2
@@ -25,13 +25,14 @@ export function Projects() {
             Other Projects
           </h2>
           <p className="mt-3 max-w-2xl text-base text-text-2">
-            Enterprise platforms and web systems delivering complex workflows,
-            real-time communication, and responsive user interfaces.
+            Enterprise platforms, real-time web applications, and operational
+            workflow systems delivering complex interfaces and dependable
+            performance.
           </p>
         </div>
       </AnimatedSection>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {otherProjects.map((project, index) => (
           <AnimatedSection key={project.name} delay={index * 0.08}>
             <ProjectCard project={project} index={index + 1} />

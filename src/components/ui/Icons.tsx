@@ -44,4 +44,3 @@ export function LinkedinIcon({ size = 16, className, ...props }: IconProps) {
     </svg>
   );
 }
-

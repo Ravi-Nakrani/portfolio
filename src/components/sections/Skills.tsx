@@ -14,24 +14,24 @@ export function Skills() {
   return (
     <SectionWrapper id="skills" labelledBy={HEADING_ID}>
       <AnimatedSection>
-        <div className="mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent-2 mb-2 block">
+        <div className="mb-14">
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 mb-3 block">
             Technical Skills
           </span>
           <h2
             id={HEADING_ID}
             className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl"
           >
-            Technology Matrix
+            Engineering Competencies
           </h2>
           <p className="mt-3 max-w-2xl text-base text-text-2">
-            Production-grade competencies across frontend frameworks, backend
-            runtimes, database architecture, and cloud services.
+            Production-grade competencies across backend runtimes, distributed
+            databases, cloud services, and frontend web architectures.
           </p>
         </div>
       </AnimatedSection>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((group, index) => (
           <AnimatedSection key={group.category} delay={index * 0.05}>
             <SkillCategoryCard group={group} />

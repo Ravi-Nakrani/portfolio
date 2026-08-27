@@ -4,7 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { personal } from "@/data";
-import { Container } from "@/components/layout/Container";
 
 // ── Font ────────────────────────────────────────────────────────
 const inter = Inter({

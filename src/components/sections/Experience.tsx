@@ -14,9 +14,9 @@ export function Experience() {
   return (
     <SectionWrapper id="experience" labelledBy={HEADING_ID}>
       <AnimatedSection>
-        <div className="mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent-2 mb-2 block">
-            Experience
+        <div className="mb-14">
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 mb-3 block">
+            Career Timeline
           </span>
           <h2
             id={HEADING_ID}
@@ -25,7 +25,8 @@ export function Experience() {
             Work Experience
           </h2>
           <p className="mt-3 max-w-2xl text-base text-text-2">
-            Building real-world systems and delivering engineering impact.
+            Building high-concurrency platforms, real-time architectures, and
+            enterprise application workflows.
           </p>
         </div>
       </AnimatedSection>

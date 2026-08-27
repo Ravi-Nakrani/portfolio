@@ -18,18 +18,18 @@ export function Contact() {
   return (
     <SectionWrapper id="contact" labelledBy={HEADING_ID}>
       <AnimatedSection>
-        <div className="mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent-2 mb-2 block">
+        <div className="mb-14">
+          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 mb-3 block">
             Get in Touch
           </span>
           <h2
             id={HEADING_ID}
             className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl"
           >
-            Let&apos;s Build Something Together
+            Let&apos;s Build Something Meaningful
           </h2>
           <p className="mt-3 max-w-2xl text-base text-text-2">
-            Whether you have a high-concurrency challenge, a real-time system
+            Whether you have a high-concurrency challenge, real-time system
             architecture, or full-stack engineering opportunities, I&apos;d love
             to connect.
           </p>
@@ -38,10 +38,10 @@ export function Contact() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
           {/* ── Left Column: Direct Channels (5 cols) ── */}
           <div className="flex flex-col gap-4 lg:col-span-5">
-            <div className="rounded-2xl border border-border bg-surface/80 p-6 sm:p-7 backdrop-blur-sm shadow-sm">
-              <div className="mb-5 flex items-center gap-2 text-accent-2">
+            <div className="rounded-2xl border border-border bg-surface/80 p-6 sm:p-8 backdrop-blur-sm shadow-sm">
+              <div className="mb-6 flex items-center gap-2 text-accent-2">
                 <MessageSquare size={18} aria-hidden="true" />
-                <h3 className="text-sm font-bold uppercase tracking-wider text-text">
+                <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-text">
                   Direct Channels
                 </h3>
               </div>

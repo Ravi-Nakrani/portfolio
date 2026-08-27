@@ -19,7 +19,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     index !== undefined ? String(index).padStart(2, "0") : null;
 
   return (
-    <article className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-surface/80 p-6 sm:p-7 backdrop-blur-sm transition-all duration-200 hover:border-border-focus/60 hover:bg-surface-2/70 shadow-sm">
+    <article className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-surface/80 p-6 sm:p-8 backdrop-blur-sm transition-all duration-200 hover:border-border-focus/60 hover:bg-surface-2/70 shadow-sm">
       <div>
         {/* Top Header: Index & Category */}
         <div className="mb-4 flex items-center justify-between">
@@ -29,7 +29,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </span>
           )}
           {project.category && (
-            <span className="font-mono text-[10px] uppercase tracking-wider text-text-3 font-semibold">
+            <span className="font-mono text-xs uppercase tracking-wider text-text-3 font-semibold">
               {project.category}
             </span>
           )}
@@ -37,7 +37,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
         {/* Title & Action Links */}
         <div className="mb-3 flex items-start justify-between gap-3">
-          <h3 className="text-lg font-bold text-text transition-colors group-hover:text-accent-2">
+          <h3 className="text-xl font-bold text-text transition-colors group-hover:text-accent-2">
             {project.name}
           </h3>
 
@@ -50,9 +50,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View ${project.name} live demo`}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-text-3 transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-text-3 transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <ArrowUpRight size={14} aria-hidden="true" />
+                  <ArrowUpRight size={15} aria-hidden="true" />
                 </a>
               )}
               {hasRepoUrl && (
@@ -61,9 +61,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View ${project.name} source code`}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-border text-text-3 transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-text-3 transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <FolderGit2 size={14} aria-hidden="true" />
+                  <FolderGit2 size={15} aria-hidden="true" />
                 </a>
               )}
             </div>
@@ -71,7 +71,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* Description */}
-        <p className="mb-4 text-xs leading-relaxed text-text-2">
+        <p className="mb-4 text-xs sm:text-sm leading-relaxed text-text-2">
           {project.description}
         </p>
 
@@ -80,7 +80,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           {project.highlights.map((highlight, idx) => (
             <li
               key={idx}
-              className="relative text-xs leading-relaxed text-text-2 before:absolute before:-left-3 before:top-[0.45em] before:h-1 before:w-1 before:rounded-full before:bg-accent/60 before:content-['']"
+              className="relative text-xs sm:text-sm leading-relaxed text-text-2 before:absolute before:-left-3 before:top-[0.5em] before:h-1 before:w-1 before:rounded-full before:bg-accent before:content-['']"
             >
               {highlight}
             </li>
@@ -89,11 +89,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       {/* Technologies */}
-      <div className="mt-auto flex flex-wrap gap-1.5 border-t border-border/50 pt-4">
+      <div className="mt-auto flex flex-wrap gap-2 border-t border-border/50 pt-5">
         {project.technologies.map((tech) => (
           <span
             key={tech}
-            className="rounded-md border border-border/80 bg-surface-2/80 px-2 py-0.5 font-mono text-[11px] text-text-3 group-hover:text-text-2 transition-colors"
+            className="rounded-md border border-border/80 bg-surface-2/80 px-2.5 py-1 font-mono text-xs font-medium text-text-2 group-hover:text-text transition-colors"
           >
             {tech}
           </span>
