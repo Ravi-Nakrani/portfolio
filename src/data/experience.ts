@@ -39,7 +39,7 @@ export const experience: Experience = {
       id: "urban-genba",
       title: "Urban Genba",
       description:
-        "Enterprise applications and data-heavy workflows featuring dynamic forms, data tables, and reusable UI components across multiple apps.",
+        "Enterprise operational applications with dynamic forms, data tables, hierarchical RBAC, and interactive Highcharts visualizations across three field apps.",
       technologies: ["React", "Ant Design", "Highcharts", "TypeScript"],
       category: "Enterprise SaaS Frontend",
     },
@@ -60,9 +60,9 @@ export const experience: Experience = {
       id: "gajari",
       title: "Gajari",
       description:
-        "Workflow-focused application with hierarchical role-based access control, operational workflows, and interactive Highcharts data visualizations.",
-      technologies: ["React", "Express", "MongoDB", "WebSocket", "Highcharts"],
-      category: "Operations & RBAC",
+        "E-commerce and engagement platform featuring coin-based reward systems, automated coupon generation logic, and scheduled cron jobs.",
+      technologies: ["Node.js", "Express", "MongoDB", "React"],
+      category: "E-Commerce & Rewards",
     },
   ],
   contributions: [

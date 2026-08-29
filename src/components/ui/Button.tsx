@@ -28,39 +28,41 @@ type ButtonProps = ButtonAsAnchor | ButtonAsButton;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: [
-    "bg-accent text-white border border-accent",
-    "hover:bg-accent-2 hover:border-accent-2",
+    "relative overflow-hidden bg-gradient-to-r from-indigo-500 to-indigo-600 text-white border border-indigo-400/40",
+    "shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_28px_rgba(99,102,241,0.45)] hover:border-indigo-300/60",
+    "hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
-    "active:scale-[0.98]",
   ].join(" "),
   secondary: [
-    "bg-surface text-text border border-border",
-    "hover:bg-surface-2 hover:border-border-focus",
+    "bg-surface/90 text-text border border-border/90 backdrop-blur-md",
+    "hover:bg-surface-2 hover:border-accent/40 hover:text-text hover:-translate-y-0.5",
+    "active:translate-y-0 active:scale-[0.97]",
+    "shadow-[0_2px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)]",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
-    "active:scale-[0.98]",
   ].join(" "),
   outline: [
-    "bg-transparent text-accent border border-accent/40",
-    "hover:bg-accent-dim hover:border-accent",
+    "bg-transparent text-accent-2 border border-accent/40",
+    "hover:bg-accent-dim hover:border-accent hover:text-text hover:-translate-y-0.5",
+    "active:translate-y-0 active:scale-[0.97]",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
-    "active:scale-[0.98]",
   ].join(" "),
   ghost: [
     "bg-transparent text-text-2 border border-transparent",
-    "hover:bg-surface hover:text-text",
+    "hover:bg-surface/80 hover:text-text hover:-translate-y-0.5",
+    "active:translate-y-0 active:scale-[0.97]",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
   ].join(" "),
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: "h-8 px-3 text-xs gap-1.5 rounded-md",
-  md: "h-9 px-4 text-sm gap-2 rounded-lg",
-  lg: "h-11 px-6 text-sm gap-2 rounded-lg",
+  sm: "h-8 px-3.5 text-xs gap-1.5 rounded-lg",
+  md: "h-10 px-4.5 text-sm gap-2 rounded-xl",
+  lg: "h-12 px-6 text-sm sm:text-base gap-2.5 rounded-xl font-semibold",
 };
 
 /**
- * Button — polymorphic: renders <a> when href is provided, else <button>.
- * Four variants, three sizes. Server Component.
+ * Button — polymorphic component with high-performance micro-interactions.
+ * Four variants, three sizes. Supports smooth icon transitions.
  */
 export function Button({
   variant = "primary",
@@ -72,10 +74,11 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center font-medium transition-all outline-none whitespace-nowrap",
+    "group inline-flex items-center justify-center font-medium transition-all duration-200 outline-none whitespace-nowrap select-none cursor-pointer",
+    "[&_svg]:transition-transform [&_svg]:duration-200 group-hover:[&_svg]:translate-x-0.5",
     variantClasses[variant],
     sizeClasses[size],
-    disabled && "pointer-events-none opacity-40",
+    disabled && "pointer-events-none opacity-40 cursor-not-allowed",
     className
   );
 

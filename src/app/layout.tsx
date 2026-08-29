@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BackgroundOrbs } from "@/components/ui/BackgroundOrbs";
 import { personal } from "@/data";
 import { SITE_URL } from "@/lib/config";
 
@@ -203,7 +204,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-[--font-inter] antialiased">
+      <body className="font-[--font-inter] antialiased min-h-screen flex flex-col justify-between relative bg-bg text-text">
+        {/* Ambient lighting & subtle depth layer */}
+        <BackgroundOrbs />
+
         {/* Skip navigation — accessibility */}
         <a href="#main-content" className="skip-link">
           Skip to main content
@@ -211,7 +215,11 @@ export default function RootLayout({
 
         <Header />
 
-        <main id="main-content" tabIndex={-1} className="outline-none">
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="outline-none relative z-10 flex-1"
+        >
           {children}
         </main>
 

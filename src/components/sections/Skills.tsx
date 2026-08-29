@@ -13,11 +13,14 @@ const HEADING_ID = "skills-heading";
 export function Skills() {
   return (
     <SectionWrapper id="skills" labelledBy={HEADING_ID}>
-      <AnimatedSection>
+      <AnimatedSection variant="fade-up">
         <div className="mb-14">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 mb-3 block">
-            Technical Skills
-          </span>
+          <div className="mb-3 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2">
+              Technical Skills
+            </span>
+          </div>
           <h2
             id={HEADING_ID}
             className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl"
@@ -33,7 +36,11 @@ export function Skills() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((group, index) => (
-          <AnimatedSection key={group.category} delay={index * 0.05}>
+          <AnimatedSection
+            key={group.category}
+            delay={index * 0.06}
+            variant="fade-scale"
+          >
             <SkillCategoryCard group={group} />
           </AnimatedSection>
         ))}

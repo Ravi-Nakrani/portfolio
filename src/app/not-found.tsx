@@ -1,25 +1,8 @@
-import type { Metadata } from "next";
-import { Button } from "@/components/ui/Button";
-
-export const metadata: Metadata = {
-  title: "Page Not Found",
-};
+import { redirect } from "next/navigation";
 
 /**
- * Custom 404 page.
- * Server Component.
+ * Single-page portfolio: redirect all unmatched routes to the home page.
  */
 export default function NotFound() {
-  return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 px-4 text-center">
-      <p className="text-6xl font-bold text-accent">404</p>
-      <h1 className="text-xl font-semibold text-text">Page not found</h1>
-      <p className="max-w-sm text-sm text-text-2">
-        The page you are looking for does not exist or has been moved.
-      </p>
-      <Button href="/" variant="primary">
-        Back to Home
-      </Button>
-    </div>
-  );
+  redirect("/");
 }

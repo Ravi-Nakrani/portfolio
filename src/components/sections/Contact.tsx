@@ -17,11 +17,14 @@ export function Contact() {
 
   return (
     <SectionWrapper id="contact" labelledBy={HEADING_ID}>
-      <AnimatedSection>
+      <AnimatedSection variant="fade-up">
         <div className="mb-14">
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 mb-3 block">
-            Get in Touch
-          </span>
+          <div className="mb-3 flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2">
+              Get in Touch
+            </span>
+          </div>
           <h2
             id={HEADING_ID}
             className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl"
@@ -38,9 +41,17 @@ export function Contact() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
           {/* ── Left Column: Direct Channels (5 cols) ── */}
           <div className="flex flex-col gap-4 lg:col-span-5">
-            <div className="rounded-2xl border border-border bg-surface/80 p-6 sm:p-8 backdrop-blur-sm shadow-sm">
-              <div className="mb-6 flex items-center gap-2 text-accent-2">
-                <MessageSquare size={18} aria-hidden="true" />
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-surface/85 via-surface/75 to-surface-2/80 p-6 sm:p-8 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.2)]">
+              {/* Animated top-edge line shimmer */}
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-px animate-line-shimmer"
+                aria-hidden="true"
+              />
+
+              <div className="mb-6 flex items-center gap-2.5 text-accent-2">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent-dim text-accent-2 border border-accent/30">
+                  <MessageSquare size={15} aria-hidden="true" />
+                </div>
                 <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-text">
                   Direct Channels
                 </h3>
@@ -50,16 +61,16 @@ export function Contact() {
                 {/* Email */}
                 <a
                   href={`mailto:${personal.email}`}
-                  className="group flex items-start gap-3.5 rounded-xl border border-border/70 bg-surface-2/60 p-3.5 transition-all hover:border-accent hover:bg-surface-2"
+                  className="group flex items-start gap-3.5 rounded-2xl border border-border/70 bg-surface-2/40 p-3.5 transition-all duration-200 hover:border-accent/50 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-dim text-accent">
+                  <div className="mt-0.5 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_10px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
                     <Mail size={16} aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] uppercase tracking-wider text-text-3 font-semibold">
                       Email
                     </p>
-                    <p className="truncate text-xs font-semibold text-text group-hover:text-accent-2 transition-colors">
+                    <p className="truncate text-xs sm:text-sm font-semibold text-text group-hover:text-accent-2 transition-colors">
                       {personal.email}
                     </p>
                   </div>
@@ -68,31 +79,31 @@ export function Contact() {
                 {/* Phone */}
                 <a
                   href={`tel:${personal.phone.replace(/\s/g, "")}`}
-                  className="group flex items-start gap-3.5 rounded-xl border border-border/70 bg-surface-2/60 p-3.5 transition-all hover:border-accent hover:bg-surface-2"
+                  className="group flex items-start gap-3.5 rounded-2xl border border-border/70 bg-surface-2/40 p-3.5 transition-all duration-200 hover:border-accent/50 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-sm"
                 >
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-dim text-accent">
+                  <div className="mt-0.5 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_10px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
                     <Phone size={16} aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] uppercase tracking-wider text-text-3 font-semibold">
                       Phone
                     </p>
-                    <p className="text-xs font-semibold text-text group-hover:text-accent-2 transition-colors">
+                    <p className="text-xs sm:text-sm font-semibold text-text group-hover:text-accent-2 transition-colors">
                       {personal.phone}
                     </p>
                   </div>
                 </a>
 
                 {/* Location */}
-                <div className="flex items-start gap-3.5 rounded-xl border border-border/70 bg-surface-2/60 p-3.5">
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-dim text-accent">
+                <div className="flex items-start gap-3.5 rounded-2xl border border-border/70 bg-surface-2/40 p-3.5">
+                  <div className="mt-0.5 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30">
                     <MapPin size={16} aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-wider text-text-3 font-semibold">
                       Location
                     </p>
-                    <p className="text-xs font-semibold text-text">
+                    <p className="text-xs sm:text-sm font-semibold text-text">
                       {personal.location}
                     </p>
                   </div>
@@ -104,16 +115,16 @@ export function Contact() {
                     href={personal.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-3.5 rounded-xl border border-border/70 bg-surface-2/60 p-3.5 transition-all hover:border-accent hover:bg-surface-2"
+                    className="group flex items-start gap-3.5 rounded-2xl border border-border/70 bg-surface-2/40 p-3.5 transition-all duration-200 hover:border-accent/50 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-sm"
                   >
-                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-dim text-accent">
+                    <div className="mt-0.5 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_10px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
                       <LinkedinIcon size={16} aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <p className="font-mono text-[10px] uppercase tracking-wider text-text-3 font-semibold">
                         LinkedIn
                       </p>
-                      <p className="truncate text-xs font-semibold text-text group-hover:text-accent-2 transition-colors">
+                      <p className="truncate text-xs sm:text-sm font-semibold text-text group-hover:text-accent-2 transition-colors">
                         ravi-nakrani-0830a5250 ↗
                       </p>
                     </div>
@@ -126,16 +137,16 @@ export function Contact() {
                     href={personal.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-3.5 rounded-xl border border-border/70 bg-surface-2/60 p-3.5 transition-all hover:border-accent hover:bg-surface-2"
+                    className="group flex items-start gap-3.5 rounded-2xl border border-border/70 bg-surface-2/40 p-3.5 transition-all duration-200 hover:border-accent/50 hover:bg-surface-2 hover:-translate-y-0.5 hover:shadow-sm"
                   >
-                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-dim text-accent">
+                    <div className="mt-0.5 flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_10px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
                       <GithubIcon size={16} aria-hidden="true" />
                     </div>
                     <div className="min-w-0">
                       <p className="font-mono text-[10px] uppercase tracking-wider text-text-3 font-semibold">
                         GitHub
                       </p>
-                      <p className="truncate text-xs font-semibold text-text group-hover:text-accent-2 transition-colors">
+                      <p className="truncate text-xs sm:text-sm font-semibold text-text group-hover:text-accent-2 transition-colors">
                         View GitHub Profile ↗
                       </p>
                     </div>
