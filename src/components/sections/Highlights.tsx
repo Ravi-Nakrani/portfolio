@@ -7,7 +7,6 @@ import {
   motion,
   useReducedMotion,
   useInView,
-  useMotionValue,
   animate,
   type Variants,
 } from "motion/react";
@@ -29,32 +28,29 @@ function MetricDisplay({ metric }: { metric: string }) {
 
   // Check if metric has a numeric part like "1,000+"
   const match = metric.match(/^([\d,]+)(\+?.*)$/);
+  const targetNum = match ? parseInt(match[1].replace(/,/g, ""), 10) : NaN;
+  const isNumeric = !isNaN(targetNum);
+  const suffix = match ? match[2] : "";
 
-  const motionVal = useMotionValue(0);
   const [displayVal, setDisplayVal] = useState("0");
 
   useEffect(() => {
-    if (!match || prefersReduced) return;
-    const num = parseInt(match[1].replace(/,/g, ""), 10);
-    if (isNaN(num)) return;
+    if (!isNumeric || prefersReduced || !isInView) return;
 
-    if (isInView) {
-      const controls = animate(motionVal, num, {
-        duration: 1.8,
-        ease: [0.16, 1, 0.3, 1],
-        onUpdate: (latest) => {
-          setDisplayVal(Math.round(latest).toLocaleString());
-        },
-      });
-      return () => controls.stop();
-    }
-  }, [isInView, match, motionVal, prefersReduced]);
+    const controls = animate(0, targetNum, {
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (latest) => {
+        setDisplayVal(Math.round(latest).toLocaleString());
+      },
+    });
 
-  if (!match || prefersReduced) {
+    return () => controls.stop();
+  }, [isInView, isNumeric, targetNum, prefersReduced]);
+
+  if (!isNumeric || prefersReduced) {
     return <span>{metric}</span>;
   }
-
-  const suffix = match[2];
 
   return (
     <span ref={ref}>
