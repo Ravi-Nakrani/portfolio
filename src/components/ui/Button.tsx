@@ -22,6 +22,7 @@ interface ButtonAsButton extends ButtonBaseProps {
   href?: never;
   external?: never;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
 type ButtonProps = ButtonAsAnchor | ButtonAsButton;
@@ -98,7 +99,7 @@ export function Button({
 
   return (
     <button
-      type="button"
+      type={"type" in rest && rest.type ? rest.type : "button"}
       className={classes}
       aria-label={ariaLabel}
       disabled={disabled}

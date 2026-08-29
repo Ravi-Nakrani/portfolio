@@ -49,7 +49,9 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Basic validation
+    console.log("formData", formData);
+
+    // Basic client validation
     if (
       !formData.name.trim() ||
       !formData.email.trim() ||
@@ -68,16 +70,34 @@ export function ContactForm() {
     }
 
     setStatus("submitting");
+    setErrorMessage("");
 
-    // Simulate async UI action ready for future server action integration
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result?.success) {
+        setStatus("error");
+        setErrorMessage(
+          result?.error ||
+            "Something went wrong. Please try again or reach out directly via email."
+        );
+        return;
+      }
+
       setStatus("success");
       setFormData(initialFormState);
     } catch {
       setStatus("error");
       setErrorMessage(
-        "An unexpected error occurred. Please try contacting directly via email."
+        "Network error. Please check your connection or contact me directly via email."
       );
     }
   };
@@ -119,6 +139,7 @@ export function ContactForm() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
+            aria-live="polite"
             className="relative flex flex-col items-center justify-center rounded-2xl border border-success/30 bg-success/10 p-8 text-center backdrop-blur-md shadow-[0_0_24px_rgba(16,185,129,0.15)]"
           >
             {/* Particle celebration burst */}
@@ -150,10 +171,10 @@ export function ContactForm() {
               className="text-success mb-3 animate-bounce"
               aria-hidden="true"
             />
-            <h4 className="text-base font-bold text-text">Message Prepared!</h4>
+            <h4 className="text-base font-bold text-text">Message Sent!</h4>
             <p className="mt-1.5 max-w-sm text-xs sm:text-sm text-text-2">
-              Thank you for reaching out. In V1, you can also email me directly
-              at{" "}
+              Thank you for reaching out. Your message has been delivered
+              successfully. You can also reach me directly at{" "}
               <a
                 href={`mailto:${personal.email}`}
                 className="text-accent underline hover:text-accent-2 font-medium"
@@ -187,6 +208,7 @@ export function ContactForm() {
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 role="alert"
+                aria-live="assertive"
                 className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 p-3.5 text-xs sm:text-sm text-red-400"
               >
                 <AlertCircle
@@ -213,12 +235,13 @@ export function ContactForm() {
                     name="name"
                     type="text"
                     required
+                    maxLength={100}
                     value={formData.name}
                     onChange={handleChange}
                     onFocus={() => setFocusedField("name")}
                     onBlur={() => setFocusedField(null)}
                     placeholder="e.g. Jane Doe"
-                    className="w-full rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                    className="w-full rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)] disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   <motion.div
                     initial={{ scaleX: 0 }}
@@ -243,12 +266,13 @@ export function ContactForm() {
                     name="email"
                     type="email"
                     required
+                    maxLength={255}
                     value={formData.email}
                     onChange={handleChange}
                     onFocus={() => setFocusedField("email")}
                     onBlur={() => setFocusedField(null)}
                     placeholder="jane@example.com"
-                    className="w-full rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                    className="w-full rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)] disabled:opacity-60 disabled:cursor-not-allowed"
                   />
                   <motion.div
                     initial={{ scaleX: 0 }}
@@ -273,12 +297,13 @@ export function ContactForm() {
                   id="contact-subject"
                   name="subject"
                   type="text"
+                  maxLength={200}
                   value={formData.subject}
                   onChange={handleChange}
                   onFocus={() => setFocusedField("subject")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Project Discussion / Engineering Opportunity"
-                  className="w-full rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                  className="w-full rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)] disabled:opacity-60 disabled:cursor-not-allowed"
                 />
                 <motion.div
                   initial={{ scaleX: 0 }}
@@ -303,12 +328,13 @@ export function ContactForm() {
                   name="message"
                   required
                   rows={4}
+                  maxLength={5000}
                   value={formData.message}
                   onChange={handleChange}
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField(null)}
                   placeholder="Tell me about your project, timeline, or opportunity..."
-                  className="w-full resize-y rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)]"
+                  className="w-full resize-y rounded-2xl border border-border/80 bg-surface-2/50 px-4 py-3 text-sm text-text placeholder:text-text-3 transition-all duration-200 hover:border-border-focus/60 focus:border-accent focus:bg-surface-2/80 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)] disabled:opacity-60 disabled:cursor-not-allowed"
                 />
                 <motion.div
                   initial={{ scaleX: 0 }}
@@ -330,6 +356,7 @@ export function ContactForm() {
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
                 <Button
+                  type="submit"
                   variant="primary"
                   size="md"
                   disabled={status === "submitting"}
