@@ -104,7 +104,7 @@ export function About() {
                 <p>
                   Full-stack software engineer with{" "}
                   <span className="font-semibold text-text border-b border-accent/40 pb-0.5">
-                    4+ years of experience
+                    {personal.yearsOfExperience} years of experience
                   </span>{" "}
                   building scalable web applications and real-time systems using{" "}
                   <span className="font-semibold text-text">
@@ -186,7 +186,7 @@ export function About() {
                         Experience
                       </p>
                       <p className="mt-0.5 text-base font-bold text-text">
-                        {personal.yearsOfExperience}+ Years Professional
+                        {personal.yearsOfExperience} Years Professional
                       </p>
                     </div>
                   </motion.div>

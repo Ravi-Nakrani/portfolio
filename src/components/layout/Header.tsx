@@ -9,7 +9,6 @@ import {
   useTransform,
   useReducedMotion,
 } from "motion/react";
-import { useScrolled } from "@/hooks/useScrolled";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { navItems, personal } from "@/data";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -27,7 +26,6 @@ const SECTION_IDS = navItems.map((item) => item.href.replace("#", ""));
  * - Theme toggle
  */
 export function Header() {
-  const scrolled = useScrolled(20);
   const activeSection = useActiveSection(SECTION_IDS);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
@@ -61,12 +59,9 @@ export function Header() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border/80 bg-bg/85 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
-          : "border-b border-transparent bg-transparent"
-      )}
+      className={
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-border/80 bg-bg/85 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
+      }
       style={{ height: "var(--header-height)" }}
     >
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
