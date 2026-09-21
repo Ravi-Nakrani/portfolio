@@ -108,9 +108,9 @@ export async function POST(request: Request) {
     }
 
     const fromAddress =
-      process.env.RESEND_FROM_EMAIL || "Portfolio Contact <onboarding@resend.dev>";
-    const toAddress =
-      process.env.CONTACT_EMAIL || "ravinakrani10@gmail.com";
+      process.env.RESEND_FROM_EMAIL ||
+      "Portfolio Contact <onboarding@resend.dev>";
+    const toAddress = process.env.CONTACT_EMAIL || "ravinakrani10@gmail.com";
 
     const emailSubject = trimmedSubject
       ? `[Portfolio Contact] ${trimmedSubject}`
@@ -153,13 +153,14 @@ Sent via portfolio website.`;
             <td style="padding: 8px 0; font-size: 12px; font-family: monospace; text-transform: uppercase; color: #8b949e; font-weight: 600;">Email:</td>
             <td style="padding: 8px 0; font-size: 15px;"><a href="mailto:${escapeHtml(trimmedEmail)}" style="color: #818cf8; text-decoration: none; font-weight: 500;">${escapeHtml(trimmedEmail)}</a></td>
           </tr>
-          ${trimmedSubject
-        ? `<tr>
+          ${
+            trimmedSubject
+              ? `<tr>
             <td style="padding: 8px 0; font-size: 12px; font-family: monospace; text-transform: uppercase; color: #8b949e; font-weight: 600;">Subject:</td>
             <td style="padding: 8px 0; font-size: 15px; color: #f0f6fc;">${escapeHtml(trimmedSubject)}</td>
           </tr>`
-        : ""
-      }
+              : ""
+          }
         </table>
 
         <div style="margin-top: 16px; padding: 20px; background-color: #0d1117; border: 1px solid #30363d; border-radius: 8px;">
@@ -194,7 +195,10 @@ Sent via portfolio website.`;
     if (error) {
       console.error("[Contact API] Resend sending failed:", error);
       return NextResponse.json(
-        { success: false, error: "Failed to send message. Please try again later." },
+        {
+          success: false,
+          error: "Failed to send message. Please try again later.",
+        },
         { status: 500 }
       );
     }
@@ -203,9 +207,11 @@ Sent via portfolio website.`;
   } catch (err) {
     console.error("[Contact API] Unexpected error:", err);
     return NextResponse.json(
-      { success: false, error: "An unexpected error occurred. Please try again." },
+      {
+        success: false,
+        error: "An unexpected error occurred. Please try again.",
+      },
       { status: 500 }
     );
   }
 }
-

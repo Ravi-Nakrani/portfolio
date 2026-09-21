@@ -1,6 +1,6 @@
 # Ravi Nakrani — Portfolio
 
-A modern, high-performance personal portfolio and engineering showcase for **Ravi Nakrani**, Full-Stack Software Engineer with 4 years of experience building scalable web applications, real-time distributed systems, and high-concurrency platforms.
+A modern, high-performance personal portfolio and engineering showcase for **Ravi Nakrani**, Full-Stack Developer with 4 years of experience building scalable web applications, real-time distributed systems, and high-concurrency platforms.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2-blue?style=flat-square&logo=react)](https://react.dev/)
@@ -37,23 +37,28 @@ The website is built with Next.js App Router (React 19, Server Components) and T
 ## Tech Stack
 
 ### Framework & Runtime
+
 - **Next.js 16** (App Router, Server Components, Route Handlers)
 - **React 19**
 - **Node.js**
 
 ### Language & Styling
+
 - **TypeScript 5**
 - **Tailwind CSS v4** (`@tailwindcss/postcss`)
 - **clsx** & **tailwind-merge**
 
 ### Animation & Icons
+
 - **Motion** (v13, formerly Framer Motion)
 - **Lucide React**
 
 ### Email & Communication
+
 - **Resend SDK**
 
 ### Code Quality & Tooling
+
 - **ESLint 9** (`eslint-config-next`)
 - **Prettier**
 
@@ -108,23 +113,28 @@ portfolio/
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Ravi-Nakrani/portfolio.git
    cd portfolio
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. (Optional) Configure environment variables for the contact form:
+
    ```bash
    cp .env.example .env.local
    ```
+
    Add your Resend API credentials if you wish to test contact form email delivery locally.
 
 4. Start the local development server:
+
    ```bash
    npm run dev
    ```
@@ -135,13 +145,13 @@ portfolio/
 
 ## Available Scripts
 
-| Script | Command | Description |
-|---|---|---|
-| `dev` | `next dev` | Starts the Next.js development server with hot-module reloading |
-| `build` | `next build` | Compiles and builds the production-ready application |
-| `start` | `next start` | Runs the compiled production build locally |
-| `lint` | `eslint` | Runs ESLint to identify code quality and style issues |
-| `format` | `prettier --write .` | Formats all source files according to Prettier rules |
+| Script         | Command              | Description                                                            |
+| -------------- | -------------------- | ---------------------------------------------------------------------- |
+| `dev`          | `next dev`           | Starts the Next.js development server with hot-module reloading        |
+| `build`        | `next build`         | Compiles and builds the production-ready application                   |
+| `start`        | `next start`         | Runs the compiled production build locally                             |
+| `lint`         | `eslint`             | Runs ESLint to identify code quality and style issues                  |
+| `format`       | `prettier --write .` | Formats all source files according to Prettier rules                   |
 | `format:check` | `prettier --check .` | Verifies code formatting across the repository without modifying files |
 
 ---
@@ -150,12 +160,12 @@ portfolio/
 
 The project uses the following environment variables (defined in `.env.example`):
 
-| Variable | Required | Description | Default / Fallback |
-|---|---|---|---|
-| `RESEND_API_KEY` | Optional locally / Required for emails | API key from [Resend](https://resend.com) used by `/api/contact` | None |
-| `CONTACT_EMAIL` | Optional | Destination email address receiving form submissions | `ravinakrani10@gmail.com` |
-| `RESEND_FROM_EMAIL` | Optional | Verified sender address configured in Resend | `Portfolio Contact <onboarding@resend.dev>` |
-| `NEXT_PUBLIC_SITE_URL` | Optional | Canonical site base URL used for Open Graph, sitemap, and robots | `https://portfolio-ravi-nakrani.vercel.app` |
+| Variable               | Required                               | Description                                                      | Default / Fallback                          |
+| ---------------------- | -------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------- |
+| `RESEND_API_KEY`       | Optional locally / Required for emails | API key from [Resend](https://resend.com) used by `/api/contact` | None                                        |
+| `CONTACT_EMAIL`        | Optional                               | Destination email address receiving form submissions             | `ravinakrani10@gmail.com`                   |
+| `RESEND_FROM_EMAIL`    | Optional                               | Verified sender address configured in Resend                     | `Portfolio Contact <onboarding@resend.dev>` |
+| `NEXT_PUBLIC_SITE_URL` | Optional                               | Canonical site base URL used for Open Graph, sitemap, and robots | `https://portfolio-ravi-nakrani.vercel.app` |
 
 > **Note**: The portfolio site builds and runs locally without setting environment variables. `RESEND_API_KEY` is only required if you want the contact form to deliver actual emails.
 
@@ -218,6 +228,7 @@ The portfolio is deployed on [Vercel](https://vercel.com) and is accessible at:
 **[https://portfolio-ravi-nakrani.vercel.app/](https://portfolio-ravi-nakrani.vercel.app/)**
 
 Deploying updates to Vercel:
+
 1. Push changes to the repository's main branch.
 2. Vercel automatically builds and optimizes the Next.js application, provisioning Serverless functions for `/api/contact`.
 
@@ -227,15 +238,15 @@ Deploying updates to Vercel:
 
 All portfolio content is decoupled from layout components and centralized under `src/data/`:
 
-| File | Content |
-|---|---|
-| `src/data/personal.ts` | Name, title, summary, location, contact details, social URLs |
-| `src/data/experience.ts` | Work history at Tagline Infotech, selected projects, key technical contributions |
-| `src/data/skills.ts` | Categorized technical competencies (Languages, Frontend, Backend, Databases, Cloud, Tools) |
-| `src/data/highlights.ts` | Key engineering metrics and architecture accomplishments |
-| `src/data/education.ts` | Degrees and institutions |
-| `src/data/strengths.ts` | Professional execution principles and engineering practices |
-| `src/data/navigation.ts` | Header navigation labels and section anchor targets |
+| File                     | Content                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| `src/data/personal.ts`   | Name, title, summary, location, contact details, social URLs                               |
+| `src/data/experience.ts` | Work history at Tagline Infotech, selected projects, key technical contributions           |
+| `src/data/skills.ts`     | Categorized technical competencies (Languages, Frontend, Backend, Databases, Cloud, Tools) |
+| `src/data/highlights.ts` | Key engineering metrics and architecture accomplishments                                   |
+| `src/data/education.ts`  | Degrees and institutions                                                                   |
+| `src/data/strengths.ts`  | Professional execution principles and engineering practices                                |
+| `src/data/navigation.ts` | Header navigation labels and section anchor targets                                        |
 
 ---
 

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { personal } from "@/data";
 
-export const alt = `${personal.name} — Full-Stack Software Engineer`;
+export const alt = `${personal.name} — Full-Stack Developer`;
 export const size = {
   width: 1200,
   height: 630,

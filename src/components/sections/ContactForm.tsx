@@ -49,8 +49,6 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log("formData", formData);
-
     // Basic client validation
     if (
       !formData.name.trim() ||

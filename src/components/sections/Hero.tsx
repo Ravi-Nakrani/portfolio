@@ -49,7 +49,7 @@ export function Hero() {
     },
   };
 
-  const techStack = ["React", "Next.js", "Node.js", "NestJS", "TypeScript"];
+  const techStack = ["Node.js", "NestJS", "React", "Next.js", "TypeScript"];
 
   return (
     <section
@@ -70,7 +70,7 @@ export function Hero() {
               <motion.div variants={itemVariants} className="mb-4">
                 <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-dim px-3.5 py-1 font-mono text-xs font-bold uppercase tracking-[0.25em] text-accent-2 shadow-[0_0_12px_rgba(99,102,241,0.2)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-                  Full-Stack Software Engineer
+                  Full-Stack Developer
                 </span>
               </motion.div>
 

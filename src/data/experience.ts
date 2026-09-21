@@ -4,9 +4,12 @@ import type { Experience } from "@/types";
  * Professional Experience data for Tagline Infotech.
  * Source of truth: RESUME.md
  *
- * NOTE: Ravi Nakrani has worked solely at Tagline Infotech.
- * All selected works (Coin Toss Game, Urban Genba, LocumFind, Gajari)
- * and technical contributions reflect work and training engineered during this tenure.
+ * NOTE: RESUME.md nests Coin Toss Game, Urban Genba, LocumFind, and Gajari
+ * all under the Tagline Infotech "Experience" section. A separate top-level
+ * "Training & Internship" section in the resume holds only two generic,
+ * company-agnostic bullets (JS/Node.js training, Git/GitHub practice) that
+ * add no differentiated signal beyond what Selected Work already shows, so
+ * they're intentionally not surfaced as a separate site section.
  * Live / repo URLs are omitted as these are authenticated internal enterprise platforms.
  */
 export const experience: Experience = {
@@ -39,7 +42,7 @@ export const experience: Experience = {
       id: "urban-genba",
       title: "Urban Genba",
       description:
-        "Enterprise operational applications with dynamic forms, data tables, hierarchical RBAC, and interactive Highcharts visualizations across three field apps.",
+        "Frontend features across three enterprise applications, iterating rapidly on workflows from stakeholders' on-field feedback. Built dynamic forms, data-heavy tables, hierarchical RBAC, and operational modules for maintenance scheduling, repair ticketing, asset tracking, and certificate generation — plus Highcharts visualizations and prototypes built ahead of backend availability.",
       technologies: ["React", "Ant Design", "Highcharts", "TypeScript"],
       category: "Enterprise SaaS Frontend",
     },
@@ -60,20 +63,20 @@ export const experience: Experience = {
       id: "gajari",
       title: "Gajari",
       description:
-        "E-commerce and engagement platform featuring coin-based reward systems, automated coupon generation logic, and scheduled cron jobs.",
-      technologies: ["Node.js", "Express", "MongoDB", "React"],
-      category: "E-Commerce & Rewards",
+        "E-commerce platform — built the coin-based reward system and coupon-generation logic to support user engagement and promotions, plus scheduled cron jobs and MongoDB schema and query work.",
+      technologies: ["Node.js", "Express", "MongoDB"],
+      category: "E-Commerce Platform",
     },
   ],
   contributions: [
     "Architected and developed a high-concurrency B2B platform supporting 1,000+ concurrent users using NestJS, TypeScript, and Prisma (PostgreSQL).",
     "Implemented low-latency real-time state broadcasting and live updates using Socket.io and WebSockets.",
     "Implemented asynchronous processing using AWS SQS and worker-based architecture for non-blocking round settlement.",
-    "Built transactional wallet integration handling complex accounting logic via secure webhooks.",
+    "Engineered a B2B wallet integration handling debit, credit, and rollback transactions with third-party operators via secure webhooks.",
     "Implemented Redis caching for high-frequency data and leaderboard lookups, significantly reducing database load.",
     "Developed server-side validated RNG-based game logic with configurable probability parameters.",
     "Built complex React interfaces, dynamic forms, and data-heavy tables with interactive Highcharts visualizations.",
-    "Developed reusable UI components and hierarchical role-based access control (RBAC) for enterprise operational workflows.",
+    "Implemented hierarchical role-based access control (RBAC) and operational modules for maintenance scheduling, repair ticketing, asset tracking, and certificate generation.",
     "Implemented scheduled cron jobs, database queries, and schema optimizations across MongoDB and PostgreSQL.",
   ],
 };

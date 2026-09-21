@@ -92,7 +92,7 @@ export function HeroPhoto() {
           <div className="relative h-full w-full">
             <Image
               src="/my_photo.png"
-              alt={`${personal.name} — Full-Stack Software Engineer`}
+              alt={`${personal.name} — Full-Stack Developer`}
               fill
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 420px, 440px"
               priority

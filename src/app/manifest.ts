@@ -7,9 +7,9 @@ import { personal } from "@/data";
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${personal.name} — Full-Stack Software Engineer`,
+    name: `${personal.name} — Full-Stack Developer`,
     short_name: personal.name,
-    description: `${personal.name} is a Full-Stack Software Engineer based in ${personal.location}, building scalable web applications and real-time systems.`,
+    description: `${personal.name} is a Full-Stack Developer based in ${personal.location}, building scalable web applications and real-time systems.`,
     start_url: "/",
     display: "standalone",
     background_color: "#080b12",

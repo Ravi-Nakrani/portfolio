@@ -37,9 +37,7 @@ export function Footer() {
             <p className="text-sm font-bold tracking-tight text-text">
               {personal.name}
             </p>
-            <p className="text-xs text-text-3 mt-0.5">
-              Full-Stack Software Engineer
-            </p>
+            <p className="text-xs text-text-3 mt-0.5">Full-Stack Developer</p>
           </div>
 
           {/* Social Links with Spring Physics Hover */}

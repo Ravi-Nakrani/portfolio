@@ -16,11 +16,13 @@ export const skills: SkillGroup[] = [
     eyebrow: "Client-Side",
     skills: [
       "React",
+      "React Hooks",
       "Next.js",
+      "HTML",
+      "CSS",
       "Redux Toolkit",
       "Tailwind CSS",
       "Ant Design",
-      "Material UI",
       "Highcharts",
     ],
   },
@@ -32,6 +34,8 @@ export const skills: SkillGroup[] = [
       "NestJS",
       "Express.js",
       "REST APIs",
+      "Webhooks",
+      "JWT Authentication",
       "WebSockets",
       "Socket.io",
     ],
@@ -39,16 +43,16 @@ export const skills: SkillGroup[] = [
   {
     category: "Databases",
     eyebrow: "Data Persistence",
-    skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis"],
+    skills: ["PostgreSQL", "Prisma", "MongoDB", "Mongoose", "MySQL", "Redis"],
   },
   {
     category: "Cloud & Deployment",
     eyebrow: "Infrastructure",
-    skills: ["AWS SQS", "Docker", "Vercel", "Render", "PM2"],
+    skills: ["AWS SQS", "Docker", "CI/CD", "Vercel", "Render", "PM2"],
   },
   {
     category: "Tools",
     eyebrow: "Workflow",
-    skills: ["Git", "Postman", "Jira"],
+    skills: ["Git", "Postman", "Jira", "Agile/Scrum"],
   },
 ];

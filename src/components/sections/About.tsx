@@ -102,7 +102,7 @@ export function About() {
 
               <div className="mt-6 flex flex-col gap-4 text-base sm:text-lg leading-relaxed text-text-2">
                 <p>
-                  Full-stack software engineer with{" "}
+                  Full-stack developer with{" "}
                   <span className="font-semibold text-text border-b border-accent/40 pb-0.5">
                     {personal.yearsOfExperience} years of experience
                   </span>{" "}
