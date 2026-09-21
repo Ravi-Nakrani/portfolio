@@ -17,7 +17,6 @@
   --color-border: rgba(255, 255, 255, 0.08); /* subtle border */
   --color-border-subtle: rgba(255, 255, 255, 0.04);
   --color-border-focus: #6366f1; /* focus ring / accent border */
-  --color-border-glow: rgba(99, 102, 241, 0.35);
 
   --color-text: #f8fafc; /* primary text — crisp near-white */
   --color-text-2: #94a3b8; /* secondary text — slate-400 */
@@ -26,7 +25,6 @@
   --color-accent: #6366f1; /* indigo-500 — primary accent */
   --color-accent-2: #818cf8; /* indigo-400 (hover/glow) */
   --color-accent-dim: rgba(99, 102, 241, 0.12); /* accent bg wash */
-  --color-accent-glow: rgba(99, 102, 241, 0.25);
 
   --color-cyan-accent: #38bdf8;
   --color-success: #10b981;
@@ -34,12 +32,23 @@
 
   /* ── Typography ────────────────────────────────────────── */
   --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-display: var(--font-instrument), var(--font-sans);
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Fira Code", monospace;
 
   /* ── Spacing / Layout ───────────────────────────────────── */
   --header-height: 68px;
+
+  /* ── Restrained elevation & glow scale ──────────────────
+     Used in place of ad-hoc rgba() shadow strings so depth stays
+     consistent and deliberate rather than "neon everywhere". ── */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.16);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.22);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.28);
+  --glow-accent-sm: 0 0 0 1px rgba(99, 102, 241, 0.16);
+  --glow-accent-md: 0 8px 24px -8px rgba(99, 102, 241, 0.35);
 
   color-scheme: dark;
 }
@@ -55,7 +64,6 @@
   --color-border: #cbd5e1;
   --color-border-subtle: #e2e8f0;
   --color-border-focus: #4f46e5;
-  --color-border-glow: rgba(79, 70, 229, 0.25);
 
   --color-text: #0f172a;
   --color-text-2: #475569;
@@ -64,11 +72,17 @@
   --color-accent: #4f46e5;
   --color-accent-2: #6366f1;
   --color-accent-dim: rgba(79, 70, 229, 0.08);
-  --color-accent-glow: rgba(79, 70, 229, 0.18);
 
   --color-cyan-accent: #0284c7;
   --color-success: #059669;
   --color-warning: #d97706;
+
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.1);
+  --glow-accent-sm: 0 0 0 1px rgba(79, 70, 229, 0.12);
+  --glow-accent-md: 0 8px 24px -8px rgba(79, 70, 229, 0.28);
 
   color-scheme: light;
 }
@@ -85,7 +99,6 @@
   --color-border: var(--color-border);
   --color-border-subtle: var(--color-border-subtle);
   --color-border-focus: var(--color-border-focus);
-  --color-border-glow: var(--color-border-glow);
 
   --color-text: var(--color-text);
   --color-text-2: var(--color-text-2);
@@ -94,14 +107,21 @@
   --color-accent: var(--color-accent);
   --color-accent-2: var(--color-accent-2);
   --color-accent-dim: var(--color-accent-dim);
-  --color-accent-glow: var(--color-accent-glow);
 
   --color-cyan-accent: var(--color-cyan-accent);
   --color-success: var(--color-success);
   --color-warning: var(--color-warning);
 
   --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
   --font-mono: var(--font-mono);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --glow-accent-sm: var(--glow-accent-sm);
+  --glow-accent-md: var(--glow-accent-md);
 }
 
 /* ================================================================
@@ -157,9 +177,16 @@
   h4,
   h5,
   h6 {
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    font-family: var(--font-display);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     color: var(--color-text);
+  }
+
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.015em;
   }
 
   p {
@@ -275,125 +302,20 @@
     );
   }
 
-  /* Linear-style high-contrast gradient text */
+  /* Accent gradient text — narrowed to the site's own two accent tokens
+     (was a wider blue→indigo→purple spread) so this one flourish reads as
+     an extension of the established palette, not an outlier splash of
+     extra hues nothing else on the page uses. Auto-adapts per theme since
+     it references the same custom properties the rest of the site does. */
   .gradient-text {
-    background: linear-gradient(135deg, #60a5fa 0%, #818cf8 40%, #c084fc 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .light .gradient-text {
-    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Subtle accent gradient text */
-  .gradient-text-subtle {
-    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .light .gradient-text-subtle {
-    background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Inline mono chip */
-  .mono-chip {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 0.15rem 0.6rem;
-    border-radius: 9999px;
-    background: var(--color-accent-dim);
-    color: var(--color-accent-2);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    letter-spacing: 0.03em;
-  }
-
-  /* Glassmorphism Card Style */
-  .glass-card {
     background: linear-gradient(
-      180deg,
-      rgba(14, 21, 38, 0.8) 0%,
-      rgba(10, 15, 29, 0.85) 100%
+      135deg,
+      var(--color-accent-2) 0%,
+      var(--color-accent) 100%
     );
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 8px 32px 0 rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .light .glass-card {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(248, 250, 252, 0.85) 100%
-    );
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(203, 213, 225, 0.7);
-    box-shadow:
-      0 8px 32px 0 rgba(0, 0, 0, 0.04),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
-  }
-
-  /* Shimmer button overlay */
-  @keyframes shimmer-sweep {
-    0% {
-      transform: translateX(-100%) rotate(45deg);
-    }
-    100% {
-      transform: translateX(200%) rotate(45deg);
-    }
-  }
-
-  .animate-shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .animate-shimmer::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      60deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.08) 50%,
-      transparent 100%
-    );
-    transform: translateX(-100%) rotate(25deg);
-    animation: shimmer-sweep 6s infinite;
-    pointer-events: none;
-  }
-
-  /* Slow ambient pulse */
-  @keyframes ambient-glow {
-    0%,
-    100% {
-      opacity: 0.4;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.7;
-      transform: scale(1.05);
-    }
-  }
-
-  .animate-ambient-glow {
-    animation: ambient-glow 8s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* ── Horizontal line shimmer (section dividers) ── */
@@ -428,64 +350,23 @@
     animation: line-shimmer 4s ease-in-out infinite;
   }
 
-  /* ── Magnetic tilt hover card effect ── */
-  .magnetic-tilt {
-    transition: transform 0.3s cubic-bezier(0.03, 0.98, 0.52, 0.99);
-  }
-
-  /* ── Floating animation (slower, more organic) ── */
-  @keyframes float-gentle {
+  /* ── Typewriter caret blink ── */
+  @keyframes caret-blink {
     0%,
-    100% {
-      transform: translateY(0px) rotate(0deg);
+    45% {
+      opacity: 1;
     }
-    33% {
-      transform: translateY(-6px) rotate(0.5deg);
-    }
-    66% {
-      transform: translateY(3px) rotate(-0.3deg);
-    }
-  }
-
-  .animate-float-gentle {
-    animation: float-gentle 8s ease-in-out infinite;
-  }
-
-  /* ── Staggered text reveal support ── */
-  @keyframes text-reveal-up {
-    0% {
-      transform: translateY(100%);
+    50%,
+    95% {
       opacity: 0;
     }
     100% {
-      transform: translateY(0);
       opacity: 1;
     }
   }
 
-  /* ── Pulse ring effect for status indicators ── */
-  @keyframes pulse-ring {
-    0% {
-      transform: scale(1);
-      opacity: 0.6;
-    }
-    50% {
-      transform: scale(1.8);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(2.2);
-      opacity: 0;
-    }
-  }
-
-  .animate-pulse-ring::before {
-    content: "";
-    position: absolute;
-    inset: -4px;
-    border-radius: 9999px;
-    border: 2px solid currentColor;
-    animation: pulse-ring 2.5s ease-out infinite;
+  .animate-caret-blink {
+    animation: caret-blink 1s steps(1) infinite;
   }
 
   /* ── Noise texture overlay ── */
@@ -498,5 +379,48 @@
     pointer-events: none;
     border-radius: inherit;
     z-index: 1;
+  }
+
+  /* ── Restrained bordered surface — used for most cards.
+     Lighter than .glass-card: a subtle tint + border, no heavy blur/shadow.
+     Keeps the "elevated glass" treatment reserved for a few signature moments
+     instead of repeating on every section. ── */
+  .card-surface {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xs);
+  }
+
+  /* ── Fine engineering-grid backdrop (hero) — restrained alternative to dot-grid ── */
+  .bg-line-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .light .bg-line-grid {
+    background-image:
+      linear-gradient(to right, rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+/* ================================================================
+   REDUCED MOTION
+   CSS @keyframes-driven utilities (shimmer, pulse, float, bounce, ping,
+   spin, marquee-style sweeps) bypass Framer Motion's useReducedMotion()
+   hook entirely, since that hook only governs motion.* elements. This
+   block is the equivalent guard for everything animated via raw CSS.
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

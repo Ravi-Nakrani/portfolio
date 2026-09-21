@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,10 +7,11 @@ import { BackgroundOrbs } from "@/components/ui/BackgroundOrbs";
 import { personal } from "@/data";
 import { SITE_URL } from "@/lib/config";
 
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-instrument",
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -197,7 +198,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={instrumentSans.variable}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -209,7 +214,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-[--font-inter] antialiased min-h-screen flex flex-col justify-between relative bg-bg text-text">
+      <body className="antialiased min-h-screen flex flex-col justify-between relative bg-bg text-text">
         {/* Ambient lighting & subtle depth layer */}
         <BackgroundOrbs />
 

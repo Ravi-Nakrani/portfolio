@@ -113,13 +113,7 @@ export function ContactForm() {
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-surface/85 via-surface/75 to-surface-2/80 p-6 sm:p-8 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.2)]">
-      {/* Top animated line shimmer */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px animate-line-shimmer"
-        aria-hidden="true"
-      />
-
+    <div className="card-surface relative overflow-hidden rounded-3xl p-6 sm:p-8">
       <div className="mb-6">
         <h3 className="text-lg font-bold text-text sm:text-xl">
           Send a Direct Message
@@ -358,7 +352,7 @@ export function ContactForm() {
                   variant="primary"
                   size="md"
                   disabled={status === "submitting"}
-                  className="min-w-[150px] animate-shimmer"
+                  className="min-w-[150px]"
                 >
                   {status === "submitting" ? (
                     <>

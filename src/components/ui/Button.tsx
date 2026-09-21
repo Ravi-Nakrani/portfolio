@@ -29,16 +29,16 @@ type ButtonProps = ButtonAsAnchor | ButtonAsButton;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: [
-    "relative overflow-hidden bg-gradient-to-r from-indigo-500 to-indigo-600 text-white border border-indigo-400/40",
-    "shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_28px_rgba(99,102,241,0.45)] hover:border-indigo-300/60",
+    "relative overflow-hidden bg-accent text-white border border-transparent",
+    "shadow-[var(--glow-accent-md)] hover:bg-accent-2",
     "hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
   ].join(" "),
   secondary: [
-    "bg-surface/90 text-text border border-border/90 backdrop-blur-md",
-    "hover:bg-surface-2 hover:border-accent/40 hover:text-text hover:-translate-y-0.5",
+    "bg-surface/90 text-text border border-border backdrop-blur-md",
+    "hover:bg-surface-2 hover:border-border-focus/40 hover:text-text hover:-translate-y-0.5",
     "active:translate-y-0 active:scale-[0.97]",
-    "shadow-[0_2px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)]",
+    "shadow-[var(--shadow-sm)]",
     "focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
   ].join(" "),
   outline: [

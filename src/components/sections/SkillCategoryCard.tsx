@@ -29,96 +29,33 @@ interface CategoryVisualTheme {
 }
 
 /**
- * Category-specific subtle ambient accents.
- * Monochromatic elegance with restrained, cohesive light tints.
+ * Single, cohesive accent theme for every category card.
+ * Cards are differentiated by their eyebrow label and content, not by
+ * assigning a different hue per category — one accent stays intentional.
  */
-const CATEGORY_THEMES: Record<string, CategoryVisualTheme> = {
-  Languages: {
-    textAccent: "text-violet-400 group-hover:text-violet-300",
-    badgeBorder: "border-violet-500/30 group-hover:border-violet-500/50",
-    badgeBg: "bg-violet-500/[0.07] group-hover:bg-violet-500/[0.14]",
-    badgeText: "text-violet-300",
-    borderHover: "hover:border-violet-500/35",
-    glow: "rgba(168, 85, 247, 0.12)",
-    cornerGlow: "from-violet-500/[0.08]",
-    topLine: "group-hover:via-violet-400/40",
-  },
-  Frontend: {
-    textAccent: "text-sky-400 group-hover:text-sky-300",
-    badgeBorder: "border-sky-500/30 group-hover:border-sky-500/50",
-    badgeBg: "bg-sky-500/[0.07] group-hover:bg-sky-500/[0.14]",
-    badgeText: "text-sky-300",
-    borderHover: "hover:border-sky-500/35",
-    glow: "rgba(56, 189, 248, 0.12)",
-    cornerGlow: "from-sky-500/[0.08]",
-    topLine: "group-hover:via-sky-400/40",
-  },
-  Backend: {
-    textAccent: "text-indigo-400 group-hover:text-indigo-300",
-    badgeBorder: "border-indigo-500/30 group-hover:border-indigo-500/50",
-    badgeBg: "bg-indigo-500/[0.07] group-hover:bg-indigo-500/[0.14]",
-    badgeText: "text-indigo-300",
-    borderHover: "hover:border-indigo-500/35",
-    glow: "rgba(99, 102, 241, 0.12)",
-    cornerGlow: "from-indigo-500/[0.08]",
-    topLine: "group-hover:via-indigo-400/40",
-  },
-  Databases: {
-    textAccent: "text-purple-400 group-hover:text-purple-300",
-    badgeBorder: "border-purple-500/30 group-hover:border-purple-500/50",
-    badgeBg: "bg-purple-500/[0.07] group-hover:bg-purple-500/[0.14]",
-    badgeText: "text-purple-300",
-    borderHover: "hover:border-purple-500/35",
-    glow: "rgba(192, 132, 252, 0.12)",
-    cornerGlow: "from-purple-500/[0.08]",
-    topLine: "group-hover:via-purple-400/40",
-  },
-  "Cloud & Deployment": {
-    textAccent: "text-blue-400 group-hover:text-blue-300",
-    badgeBorder: "border-blue-500/30 group-hover:border-blue-500/50",
-    badgeBg: "bg-blue-500/[0.07] group-hover:bg-blue-500/[0.14]",
-    badgeText: "text-blue-300",
-    borderHover: "hover:border-blue-500/35",
-    glow: "rgba(96, 165, 250, 0.12)",
-    cornerGlow: "from-blue-500/[0.08]",
-    topLine: "group-hover:via-blue-400/40",
-  },
-  Tools: {
-    textAccent: "text-slate-300 group-hover:text-slate-200",
-    badgeBorder: "border-slate-400/30 group-hover:border-slate-400/50",
-    badgeBg: "bg-slate-400/[0.07] group-hover:bg-slate-400/[0.14]",
-    badgeText: "text-slate-300",
-    borderHover: "hover:border-slate-400/35",
-    glow: "rgba(148, 163, 184, 0.12)",
-    cornerGlow: "from-slate-400/[0.08]",
-    topLine: "group-hover:via-slate-400/40",
-  },
-};
-
-const DEFAULT_THEME: CategoryVisualTheme = {
+const THEME: CategoryVisualTheme = {
   textAccent: "text-accent-2 group-hover:text-accent",
   badgeBorder: "border-accent/30 group-hover:border-accent/50",
   badgeBg: "bg-accent/[0.07] group-hover:bg-accent/[0.14]",
   badgeText: "text-accent-2",
   borderHover: "hover:border-accent/35",
-  glow: "rgba(99, 102, 241, 0.12)",
+  glow: "rgba(99, 102, 241, 0.1)",
   cornerGlow: "from-accent/[0.08]",
   topLine: "group-hover:via-accent-2/40",
 };
 
 /**
  * SkillCategoryCard
- * Refined glassmorphic card component with:
+ * Refined card component with:
  * - Dynamic GPU-accelerated cursor spotlight (pointer devices)
  * - Highly damped, subtle 3D card tilt (max ±1.8°)
- * - Category-tuned ambient lighting accents
  * - Staggered entrance and tactile micro-interactions on skill chips
  */
 export function SkillCategoryCard({ group }: SkillCategoryCardProps) {
   const prefersReduced = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const theme = CATEGORY_THEMES[group.category] ?? DEFAULT_THEME;
+  const theme = THEME;
 
   // Cursor Spotlight Motion Values
   const mouseX = useMotionValue(-1000);
@@ -184,12 +121,12 @@ export function SkillCategoryCard({ group }: SkillCategoryCardProps) {
       whileHover={prefersReduced ? undefined : { y: -3, scale: 1.008 }}
       transition={{ type: "spring", stiffness: 380, damping: 25 }}
       className={cn(
-        "group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl",
+        "group relative flex h-full flex-col overflow-hidden rounded-3xl",
         "border border-white/[0.08] bg-gradient-to-b from-surface/90 via-surface/80 to-surface-2/80",
-        "p-6 sm:p-7 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.18)]",
-        "transition-colors duration-300",
+        "p-6 sm:p-7 backdrop-blur-xl shadow-[var(--shadow-sm)]",
+        "transition-[border-color,box-shadow] duration-300",
         theme.borderHover,
-        "hover:shadow-[0_16px_40px_rgba(0,0,0,0.3)]"
+        "hover:shadow-[var(--shadow-md)]"
       )}
     >
       {/* Category-tuned subtle corner ambient highlight */}

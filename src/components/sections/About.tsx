@@ -124,20 +124,11 @@ export function About() {
                 {strengthsList.map((strength) => (
                   <motion.span
                     key={strength}
-                    whileHover={
-                      prefersReduced
-                        ? undefined
-                        : {
-                            y: -3,
-                            scale: 1.05,
-                            boxShadow: "0 6px 20px rgba(99,102,241,0.25)",
-                          }
-                    }
-                    whileTap={prefersReduced ? undefined : { scale: 0.96 }}
+                    whileHover={prefersReduced ? undefined : { y: -2 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    className="group flex cursor-default items-center gap-2 rounded-full border border-border/70 bg-surface/50 px-3.5 py-1 text-text transition-colors duration-200 hover:border-accent/50 hover:bg-surface"
+                    className="group flex cursor-default items-center gap-2 rounded-full border border-border/70 bg-surface/50 px-3.5 py-1 text-text transition-colors duration-200 hover:border-border-focus/40 hover:bg-surface"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_6px_rgba(99,102,241,0.8)]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                     {strength}
                   </motion.span>
                 ))}
@@ -159,13 +150,7 @@ export function About() {
 
             {/* ── Right Column: Structured Profile Facts (5 cols) ── */}
             <motion.div style={{ y: rightY }} className="w-full lg:col-span-5">
-              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-surface/85 via-surface/75 to-surface-2/80 p-6 sm:p-8 backdrop-blur-xl shadow-[0_12px_36px_rgba(0,0,0,0.2)]">
-                {/* Animated top-edge line shimmer */}
-                <div
-                  className="pointer-events-none absolute inset-x-0 top-0 h-px animate-line-shimmer"
-                  aria-hidden="true"
-                />
-
+              <div className="card-surface relative overflow-hidden rounded-3xl p-6 sm:p-8">
                 <motion.div
                   variants={factsContainerVariants}
                   initial="hidden"
@@ -178,7 +163,7 @@ export function About() {
                     variants={factRowVariants}
                     className="group flex items-start gap-4 pb-4.5 rounded-xl p-2 -mx-2 transition-all duration-200 hover:bg-surface-2/60 hover:pl-3"
                   >
-                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_12px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 transition-transform duration-200 group-hover:scale-110">
                       <Calendar size={16} aria-hidden="true" />
                     </div>
                     <div>
@@ -196,7 +181,7 @@ export function About() {
                     variants={factRowVariants}
                     className="group flex items-start gap-4 py-4.5 rounded-xl p-2 -mx-2 transition-all duration-200 hover:bg-surface-2/60 hover:pl-3"
                   >
-                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_12px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 transition-transform duration-200 group-hover:scale-110">
                       <MapPin size={16} aria-hidden="true" />
                     </div>
                     <div>
@@ -214,7 +199,7 @@ export function About() {
                     variants={factRowVariants}
                     className="group flex items-start gap-4 py-4.5 rounded-xl p-2 -mx-2 transition-all duration-200 hover:bg-surface-2/60 hover:pl-3"
                   >
-                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_12px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 transition-transform duration-200 group-hover:scale-110">
                       <Crosshair size={16} aria-hidden="true" />
                     </div>
                     <div>
@@ -232,7 +217,7 @@ export function About() {
                     variants={factRowVariants}
                     className="group flex items-start gap-4 py-4.5 rounded-xl p-2 -mx-2 transition-all duration-200 hover:bg-surface-2/60 hover:pl-3"
                   >
-                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_12px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 transition-transform duration-200 group-hover:scale-110">
                       <Code size={16} aria-hidden="true" />
                     </div>
                     <div>
@@ -250,7 +235,7 @@ export function About() {
                     variants={factRowVariants}
                     className="group flex items-start gap-4 pt-4.5 rounded-xl p-2 -mx-2 transition-all duration-200 hover:bg-surface-2/60 hover:pl-3"
                   >
-                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_12px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110">
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 transition-transform duration-200 group-hover:scale-110">
                       <Briefcase size={16} aria-hidden="true" />
                     </div>
                     <div>

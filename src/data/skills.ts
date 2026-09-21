@@ -1,6 +1,20 @@
 import type { SkillGroup } from "@/types";
 
 /**
+ * Core stack — the technologies the resume itself leads with, verbatim from
+ * its summary: "...with TypeScript, React, Next.js, Node.js, and NestJS."
+ * Used by the Hero tech line and featured at the top of the Skills section so
+ * the primary stack reads louder than the full capability list.
+ */
+export const coreStack = [
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Node.js",
+  "NestJS",
+];
+
+/**
  * Technical skills grouped by category.
  * Source of truth: RESUME.md — "Technical Skills" section.
  * Order matches resume section order.

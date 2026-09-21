@@ -56,11 +56,8 @@ export function Header() {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
       className={
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-border/80 bg-bg/85 backdrop-blur-2xl shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-border/80 bg-bg/85 backdrop-blur-2xl shadow-[var(--shadow-sm)]"
       }
       style={{ height: "var(--header-height)" }}
     >
@@ -79,7 +76,7 @@ export function Header() {
           <motion.span
             whileHover={prefersReduced ? undefined : { scale: 1.1, rotate: 6 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            className="relative flex h-7.5 w-7.5 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500/25 to-indigo-600/15 border border-indigo-400/40 text-xs font-bold text-accent-2 select-none shadow-[0_0_14px_rgba(99,102,241,0.3)] transition-colors group-hover:border-indigo-300/70"
+            className="relative flex h-7.5 w-7.5 items-center justify-center rounded-lg bg-accent-dim border border-accent/30 text-xs font-bold text-accent-2 select-none transition-colors group-hover:border-accent/60"
           >
             {nameInitials}
           </motion.span>
@@ -121,7 +118,7 @@ export function Header() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-active-indicator"
-                        className="absolute inset-0 rounded-full bg-surface-2 border border-border-focus/50 shadow-[0_0_12px_rgba(99,102,241,0.2)]"
+                        className="absolute inset-0 rounded-full bg-surface-2 border border-border-focus/50"
                         transition={{
                           type: "spring",
                           bounce: 0.18,

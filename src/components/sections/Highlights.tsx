@@ -68,6 +68,9 @@ function MetricDisplay({ metric }: { metric: string }) {
 export function Highlights() {
   const prefersReduced = useReducedMotion();
 
+  // The first highlight is the only quantified one — it earns display type.
+  const [featured, ...supporting] = engineeringHighlights;
+
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: prefersReduced ? 0 : 24 },
     visible: {
@@ -105,7 +108,7 @@ export function Highlights() {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           variants={containerVariants}
-          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-surface/85 via-surface/75 to-surface-2/80 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.25)]"
+          className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-surface/85 via-surface/75 to-surface-2/80 p-6 sm:p-10 lg:p-12 backdrop-blur-xl shadow-[var(--shadow-lg)]"
         >
           {/* Animated top-edge line shimmer */}
           <div
@@ -129,56 +132,65 @@ export function Highlights() {
             </span>
           </div>
 
-          {/* 4-column metric grid with clean dividers and hover interaction */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 lg:divide-x lg:divide-border/60">
-            {engineeringHighlights.map((item, index) => {
-              const Icon = iconMap[item.iconName];
-              return (
-                <motion.div
-                  key={item.id}
-                  variants={itemVariants}
-                  whileHover={
-                    prefersReduced ? undefined : { y: -4, scale: 1.01 }
-                  }
-                  transition={{ type: "spring", stiffness: 350, damping: 20 }}
-                  className={`group flex flex-col justify-between rounded-2xl p-4 sm:p-5 transition-all duration-300 hover:bg-surface-2/50 hover:shadow-[0_0_30px_rgba(99,102,241,0.18)] ${
-                    index % 2 === 0 ? "lg:px-8" : "lg:pl-8 lg:pr-4"
-                  }`}
-                >
-                  <div>
-                    <div className="mb-4 flex items-center">
-                      <motion.div
-                        initial={
-                          prefersReduced
-                            ? false
-                            : { scale: 0.6, rotate: -30, opacity: 0 }
-                        }
-                        whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          type: "spring",
-                          bounce: 0.4,
-                          delay: index * 0.1,
-                        }}
-                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-dim text-accent-2 border border-accent/30 shadow-[0_0_14px_rgba(99,102,241,0.2)] transition-transform duration-200 group-hover:scale-110"
-                      >
-                        <Icon size={18} aria-hidden="true" />
-                      </motion.div>
-                    </div>
+          {/* Asymmetric layout: the one hard number is featured; the rest are
+              presented as capabilities rather than faux-metrics. */}
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* ── Featured metric ── */}
+            <motion.div
+              variants={itemVariants}
+              className="lg:col-span-4 lg:border-r lg:border-border/60 lg:pr-10"
+            >
+              <p className="font-display text-6xl font-semibold tracking-tight text-text sm:text-7xl">
+                <MetricDisplay metric={featured.metric} />
+              </p>
+              <h3 className="mt-3 text-sm font-semibold uppercase tracking-wider text-accent-2">
+                {featured.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-text-2">
+                {featured.description}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {featured.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-md border border-border/60 bg-surface/50 px-2 py-0.5 font-mono text-[11px] text-text-3"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
 
-                    <p className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl group-hover:text-accent-2 transition-colors duration-200">
-                      <MetricDisplay metric={item.metric} />
-                    </p>
-                    <h3 className="mt-2 text-sm font-semibold uppercase tracking-wider text-text">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-text-2">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* ── Supporting capabilities ── */}
+            <div className="lg:col-span-8 flex flex-col divide-y divide-border/60">
+              {supporting.map((item) => {
+                const Icon = iconMap[item.iconName];
+                return (
+                  <motion.div
+                    key={item.id}
+                    variants={itemVariants}
+                    className="group flex items-start gap-4 py-5 first:pt-0 last:pb-0 sm:gap-5"
+                  >
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent-dim text-accent-2 transition-transform duration-200 group-hover:scale-110">
+                      <Icon size={17} aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <h3 className="text-base font-semibold text-text sm:text-lg">
+                          {item.title}
+                        </h3>
+                        <span className="rounded-md border border-border/60 bg-surface/50 px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider text-text-3">
+                          {item.metric}
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-sm leading-relaxed text-text-2">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </motion.div>
       </Container>
